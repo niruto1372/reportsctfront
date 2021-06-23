@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import {
   // Button,
-  NavItem,
-  NavLink,
-  Nav,
-  TabContent,
-  TabPane,
+  // NavItem,
+  // NavLink,
+  // Nav,
+  // TabContent,
+  // TabPane,
   Container,
   Row,
   Col,
@@ -20,10 +20,10 @@ import FormRegisterHours from "./index-sections/FormRegisterHours";
 import TableServices from "components/Users/TableServices";
 import TableAllServices from "components/Users/TableAllServices";
 import AuthContext from "context/auth/authContext";
-import { getEmployeesPerHourAreaServicesRolesById } from "services/services";
+import { getEmployeesPerHourAreaServicesRolesById,getlistallemployeesById } from "services/services";
 
 const UserPage = () => {
-  const [pills, setPills] = React.useState("2");
+  // const [pills, setPills] = React.useState("2");
   React.useEffect(() => {
     document.body.classList.add("profile-page");
     document.body.classList.add("sidebar-collapse");
@@ -42,6 +42,7 @@ const UserPage = () => {
 
   //////////////////////////////////////////////
   const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
 
   const getData = () => {
     getEmployeesPerHourAreaServicesRolesById(idEmployees).then((rpta) => {
@@ -49,9 +50,20 @@ const UserPage = () => {
     });
   };
 
+  const getAllData = () => {
+    getlistallemployeesById(idEmployees).then((rpta) => {
+      setAllData(rpta);
+    });
+  };
+
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    getAllData();
+  }, []);
+
 
   return (
     <>
@@ -69,18 +81,18 @@ const UserPage = () => {
 
             <Row>
               <Col  md="4"  sm="12">
-                <FormRegisterHours getData={getData} />
+                <FormRegisterHours getData={getData} getAllData={getAllData} />
               </Col>
               <Col  md="8">
                 <TableServices data={data} getData={getData} />
               </Col>
             </Row>
 
-            {/* <Row>
-              <TableAllServices data={data} getData={getData} />
-            </Row> */}
-
             <Row>
+              <TableAllServices allData={allData} getAllData={getAllData} />
+            </Row>
+
+            {/* <Row>
               <Col className="ml-auto mr-auto" md="6">
                 <h4 className="title text-center">Acciones</h4>
                 <div className="nav-align-center">
@@ -206,6 +218,7 @@ const UserPage = () => {
                 </TabPane>
               </TabContent>
             </Row>
+           */}
           </Container>
         </div>
         <DefaultFooter />

@@ -1,5 +1,5 @@
-import AuthContext from "context/auth/authContext";
-import React, { useState, useEffect, useContext } from "react";
+
+import React, { useState, useEffect } from "react";
 // reactstrap components
 import {
   Button,
@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-  CardTitle,
   Form,
   Input,
   InputGroupAddon,
@@ -21,16 +20,15 @@ import { getRoles } from "services/services";
 import Swal from "sweetalert2";
 // core components
 
-const FormRegisterHoursAdmin = ({ getData }) => {
+const FormRegisterHoursAdmin = ({ getData,idEmployees }) => {
   const [startFocus, setStartFocus] = React.useState(false);
   const [finishFocus, setFinishFocus] = React.useState(false);
   var moment = require("moment");
 
-  const localAuthContext = useContext(AuthContext);
-  const { idEmployees } = localAuthContext;
 
   //get services
   const [services, setServices] = useState([]);
+
   useEffect(() => {
     getServices().then((arrayServices) => {
       setServices(arrayServices.data);
@@ -39,12 +37,14 @@ const FormRegisterHoursAdmin = ({ getData }) => {
 
   //get roles
   const [roles, setRoles] = useState([]);
+  
   useEffect(() => {
     getRoles().then((arrayRoles) => {
       setRoles(arrayRoles.data);
     });
   }, []);
 
+  // set formulario
   const [formulario, setFormulario] = useState({
     IdEmployees: idEmployees,
     IdServices: "",

@@ -1,6 +1,6 @@
 import AuthContext from "context/auth/authContext";
 import React, { useContext } from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
@@ -14,12 +14,7 @@ import {
   NavLink,
   Nav,
   Container,
-  UncontrolledTooltip,
-  Button,
-  TabContent,
-  TabPane,
-  Row,
-  Col,
+  UncontrolledTooltip
 } from "reactstrap";
 
 function ExamplesNavbar({ history }) {

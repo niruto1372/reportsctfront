@@ -1,6 +1,6 @@
-import AuthContext from "context/auth/authContext";
-import React,{useContext} from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
@@ -14,12 +14,7 @@ import {
   NavLink,
   Nav,
   Container,
-  UncontrolledTooltip,
-  Button,
-  TabContent,
-  TabPane,
-  Row,
-  Col,
+  UncontrolledTooltip
 } from "reactstrap";
 
 
@@ -27,9 +22,6 @@ function ExamplesNavbar({history}) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [collapseOpen, setCollapseOpen] = React.useState(false);
 
-  //mis cosas
-  const localAuthContext= useContext(AuthContext);
-  const {name,cerrarSesion}=localAuthContext;
 
 
 

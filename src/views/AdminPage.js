@@ -1,11 +1,9 @@
-import React, { useContext, useState, useEffect } from "react";
+import React from "react";
 import { Container } from "reactstrap";
 
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import UserNavbar from "components/Navbars/UserNavbar";
-import AuthContext from "context/auth/authContext";
-import { getEmployeesPerHourAreaServicesRolesById } from "services/services";
 import TabsAdmin from "components/Admin/TabsAdmin";
 
 const UserPage = () => {
@@ -21,8 +19,6 @@ const UserPage = () => {
     };
   }, []);
 
-  const localAuthContext = useContext(AuthContext);
-  const { idEmployees } = localAuthContext;
 
   // //////////////////////////////////////////////
   // const [data, setData] = useState([]);
@@ -51,7 +47,7 @@ const UserPage = () => {
               horas por servicio independientemente.
             </h5> */}
             
-            <TabsAdmin idEmployees={idEmployees}/>
+            <TabsAdmin />
           </Container>
         </div>
         <DefaultFooter />

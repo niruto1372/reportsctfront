@@ -13,8 +13,6 @@ import {
   Col,
 } from "reactstrap";
 
-import { getEmployeesPerHourAreaServicesRolesById } from "services/services";
-
 import FormRegisterHoursAdmin from "./FormRegisterHoursAdmin";
 import FormRegisterUsers from "./FormRegisterUsers";
 import FormRegisterServices from "./FormRegisterServices";
@@ -22,17 +20,24 @@ import FormRegisterRoles from "./FormRegisterRoles";
 import TableAllServices from "components/Users/TableAllServices";
 import TableServices from "components/Users/TableServices";
 import AuthContext from "context/auth/authContext";
+import {
+  getEmployeesPerHourAreaServicesRolesById,
+  getlistallemployeesById,
+} from "services/services";
 
-
-const TabsAdmin = ({idEmployees}) => {
+const TabsAdmin = () => {
   const [iconPills, setIconPills] = React.useState("1");
 
-  // const localAuthContext = useContext(AuthContext);
-  // const { idEmployees} = localAuthContext;
+  const localAuthContext = useContext(AuthContext);
+  // const { idEmployees } = localAuthContext;
+
+  var idEmployees = 1; // NO ESTA JALANDO LA VARIABLE DE LOCAL CONTEXT
+
 
 
   //////////////////////////////////////////////
   const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
 
   const getData = () => {
     getEmployeesPerHourAreaServicesRolesById(idEmployees).then((rpta) => {
@@ -40,8 +45,18 @@ const TabsAdmin = ({idEmployees}) => {
     });
   };
 
+  const getAllData = () => {
+    getlistallemployeesById(idEmployees).then((rpta) => {
+      setAllData(rpta);
+    });
+  };
+
   useEffect(() => {
     getData();
+  }, []);
+
+  useEffect(() => {
+    getAllData();
   }, []);
 
   return (
@@ -113,30 +128,38 @@ const TabsAdmin = ({idEmployees}) => {
                   activeTab={"iconPills" + iconPills}
                 >
                   <TabPane tabId="iconPills1">
-                  
                     <Col className="ml-auto mr-auto" md="12" xl="12">
-                      <FormRegisterHoursAdmin getData={getData} />
+                      <FormRegisterHoursAdmin
+                      idEmployees={idEmployees}
+                        getData={getData}
+                        getAllData={getAllData}
+                      />
                     </Col>
                     <Col className="ml-auto mr-auto" md="12" xl="12">
                       <TableServices data={data} getData={getData} />
-                      <TableAllServices data={data} getData={getData} />
+                      <TableAllServices
+                        allData={allData}
+                        getAllData={getAllData}
+                      />
                     </Col>
                   </TabPane>
                   <TabPane tabId="iconPills2">
-                    <p>Completa el formulario para registrar  usuarios</p>
-                    <Col>
-                    <FormRegisterUsers />
+                    <p>Completa el formulario para registrar usuarios</p>
+                    <Col className="ml-auto mr-auto" md="7">
+                      <FormRegisterUsers />
                     </Col>
                   </TabPane>
                   <TabPane tabId="iconPills3">
                     <p>Completa el formulario para registrar servicios</p>
-                    <Col>
-                    <FormRegisterServices />
+                    <Col className="ml-auto mr-auto" md="7">
+                      <FormRegisterServices />
                     </Col>
                   </TabPane>
                   <TabPane tabId="iconPills4">
                     <p>Para registrar y editar roles de los roles</p>
-                    <FormRegisterRoles/>
+                    <Col className="ml-auto mr-auto" md="10">
+                      <FormRegisterRoles />
+                    </Col>
                   </TabPane>
                 </TabContent>
               </CardBody>

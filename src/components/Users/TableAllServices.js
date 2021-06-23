@@ -3,7 +3,7 @@ import React from "react";
 import { Col } from "reactstrap";
 import { MDBDataTableV5 } from "mdbreact";
 
-const TableAllServices = ({ data, getData }) => {
+const TableAllServices = ({ allData }) => {
   //const [data, setData] = useState([]);
 
   // const localAuthContext = useContext(AuthContext);
@@ -46,7 +46,7 @@ const TableAllServices = ({ data, getData }) => {
         field: "Day",
       },
     ],
-    rows: data.map((objData) => {
+    rows: allData.map((objData) => {
       return {
         ...objData,
       };
@@ -59,7 +59,7 @@ const TableAllServices = ({ data, getData }) => {
       <Col className="ml-auto mr-auto" md="12">
         <div className="section section-contact-us text-center">
           <h2 className="title">Histórico de Servicios Registrados</h2>
-          <p className="description">Lista de servicios ingresados.</p>
+          {/* <p className="description">Lista de servicios ingresados.</p> */}
 
           <MDBDataTableV5
             hover

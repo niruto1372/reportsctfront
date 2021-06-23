@@ -5,7 +5,6 @@ import { Container, Col } from "reactstrap";
 // core components
 import TransparentFooter from "components/Footers/TransparentFooter.js";
 import AuthContext from "context/auth/authContext";
-import SignUp from "views/index-sections/SignUp";
 import { postRegister } from "services/auth";
 import NavbarLoginRegister from "components/Navbars/NavbarLoginRegister";
 

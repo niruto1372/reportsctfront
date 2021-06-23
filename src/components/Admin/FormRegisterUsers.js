@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { postRegister } from "services/auth";
 
-import { Container, Col } from "reactstrap";
+import {
+  Button
+} from "reactstrap";
 import Swal from "sweetalert2";
 
 const FormRegisterUsers = () => {
+
   const [formulario, setFormulario] = useState({
     name: "",
     lastname: "",
@@ -59,7 +62,6 @@ const FormRegisterUsers = () => {
             icon: "success",
             text: "Se ha creado el usuario exitosamente",
             timer: 2000,
-            
           });
         }
       });
@@ -67,66 +69,86 @@ const FormRegisterUsers = () => {
   };
   return (
     <>
-      <div className="content">
-        <Container>
-          <Col className="ml-auto mr-auto" md="4">
-            {/* <SignUp />  */}
+      
 
             <form className="form" onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="name"
+                className="form-control"
+                placeholder="Nombre"
                 name="name"
                 value={formulario.name}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="text"
-                placeholder="lastname"
+                className="form-control"
+                placeholder="Apellido"
                 name="lastname"
                 value={formulario.lastname}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="text"
-                placeholder="email"
+                className="form-control"
+                placeholder="Email"
                 name="email"
                 value={formulario.email}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="numer"
-                placeholder="area"
+                className="form-control"
+                placeholder="Area a la que pertenece"
                 name="idAreas"
                 value={formulario.idAreas}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="text"
+                className="form-control"
                 placeholder="username"
                 name="username"
                 value={formulario.username}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="password"
+                className="form-control"
                 placeholder="Contraseña"
                 name="pass1"
                 value={formulario.pass1}
                 onChange={handleChange}
               />
+              <br />
               <input
                 type="password"
+                className="form-control"
                 placeholder="Repita contraseña"
                 name="pass2"
                 value={formulario.pass2}
                 onChange={handleChange}
               />
-              <button type="submit">registrar</button>
+              <br />
+              <Button
+                className="btn-blue btn-round"
+                color="info"
+                // onClick={(e) => e.preventDefault()}
+                size="lg"
+                type="submit"
+              >
+                Registrar
+              </Button>
+              {/* <button type="submit" className="btn-blue btn-round" color="info"> 
+                registrar
+              </button> */}
             </form>
-          </Col>
-        </Container>
-      </div>
+          
     </>
   );
 };

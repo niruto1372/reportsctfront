@@ -21,7 +21,7 @@ import { getRoles } from "services/services";
 import Swal from "sweetalert2";
 // core components
 
-const FormRegisterHours = ({ getData }) => {
+const FormRegisterHours = ({ getData,getAllData }) => {
   const [startFocus, setStartFocus] = React.useState(false);
   const [finishFocus, setFinishFocus] = React.useState(false);
   var moment = require("moment");
@@ -93,6 +93,7 @@ const FormRegisterHours = ({ getData }) => {
           postWorkedHours(objEmployeesRoles).then((response) => {
             //localStorage.setItem("IdEmployeesRoles", response.IdEmployeesRoles);
             getData();
+            getAllData();
             Swal.fire({
               title: "Hecho!",
               icon: "success",
@@ -176,7 +177,7 @@ const FormRegisterHours = ({ getData }) => {
                     })}
                   </select>
                 </div>
-                <label htmlFor="roles">Selecciona la hora de inicio:</label>
+                <label htmlFor="start">Selecciona la hora de inicio:</label>
                 <InputGroup
                   className={
                     "input-lg" + (startFocus ? " input-group-focus" : "")
@@ -197,7 +198,7 @@ const FormRegisterHours = ({ getData }) => {
                   ></Input>
                 </InputGroup>
 
-                <label htmlFor="roles">
+                <label htmlFor="end">
                   Selecciona la hora de finalización:
                 </label>
                 <InputGroup
@@ -233,6 +234,7 @@ const FormRegisterHours = ({ getData }) => {
                 </Button>
               </CardFooter>
             </Form>
+          
           </Card>
         </div>
       

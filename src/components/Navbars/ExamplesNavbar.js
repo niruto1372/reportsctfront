@@ -1,6 +1,6 @@
 import AuthContext from "context/auth/authContext";
 import React,{useContext} from "react";
-import { Link, useHistory, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 // reactstrap components
 import {
   Collapse,
@@ -15,11 +15,7 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-  Button,
-  TabContent,
-  TabPane,
-  Row,
-  Col,
+  Button
 } from "reactstrap";
 
 
@@ -29,7 +25,7 @@ function ExamplesNavbar({history}) {
 
   //mis cosas
   const localAuthContext= useContext(AuthContext);
-  const {name,cerrarSesion}=localAuthContext;
+  const {cerrarSesion}=localAuthContext;
 
 
 

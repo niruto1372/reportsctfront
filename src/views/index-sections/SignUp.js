@@ -1,15 +1,11 @@
-import React,{useState} from "react";
+import React from "react";
 
 // reactstrap components
-import {
-  Container,
-  Row,
-} from "reactstrap";
+import { Container } from "reactstrap";
 
 // core components
 
 function SignUp() {
-  
   return (
     <>
       <div
@@ -77,7 +73,7 @@ function SignUp() {
             </form>
           </Row> */}
 
-{/*           
+          {/*           
           <Row>
             <Card className="card-signup" data-background-color="blue">
               <Form action="" className="form" method="">

@@ -1,8 +1,21 @@
 import React, { useState } from "react";
 import { postRegisterServices } from "services/services";
 import Swal from "sweetalert2";
+import {
+  Button,
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Form,
+  Input,
+  InputGroup,
+} from "reactstrap";
 
 const FormRegisterServices = () => {
+  const [ServiceFocus, setServiceFocus] = React.useState(false);
+  const [DescriptionFocus, setDescriptionFocus] = React.useState(false);
+
   const [formulario, setFormulario] = useState({
     service: "",
     description: "",
@@ -43,7 +56,7 @@ const FormRegisterServices = () => {
   };
   return (
     <>
-      <form className="form" onSubmit={handleSubmit}>
+      {/* <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Servicio"
@@ -59,7 +72,71 @@ const FormRegisterServices = () => {
           onChange={handleChange}
         />
         <button type="submit">Registrar</button>
-      </form>
+      </form> */}
+      <Card className="card-signup">
+        <Form action="" className="form" method="" onSubmit={handleSubmit}>
+          <CardHeader className="text-center">
+
+          </CardHeader>
+          <CardBody>
+            <label htmlFor="start">Ingresa un servicio:</label>
+            <InputGroup
+              className={
+                "input-lg" + (ServiceFocus ? " input-group-focus" : "")
+              }
+            >
+              {/* <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="far fa-clock"></i>
+              </InputGroupText>
+            </InputGroupAddon> */}
+              <Input
+                type="text"
+                placeholder="Servicio"
+                name="service"
+                value={formulario.service}
+                onChange={handleChange}
+                onFocus={() => setServiceFocus(true)}
+                onBlur={() => setServiceFocus(false)}
+              ></Input>
+            </InputGroup>
+
+            <label htmlFor="end">Ingresa una descripción del servicio:</label>
+            <InputGroup
+              className={
+                "input-lg" + (DescriptionFocus ? " input-group-focus" : "")
+              }
+            >
+              {/* <InputGroupAddon addonType="prepend">
+              <InputGroupText>
+                <i className="far fa-clock"></i>
+              </InputGroupText>
+            </InputGroupAddon> */}
+              <Input
+                type="text"
+                placeholder="Descripción"
+                name="description"
+                value={formulario.description}
+                onChange={handleChange}
+                onFocus={() => setDescriptionFocus(true)}
+                onBlur={() => setDescriptionFocus(false)}
+              ></Input>
+            </InputGroup>
+          </CardBody>
+          <CardFooter className="text-center">
+            <Button
+              className="btn-blue btn-round"
+              color="info"
+              // href="#pablo"
+              // onClick={(e) => e.preventDefault()}
+              size="lg"
+              type="submit"
+            >
+              Registrar
+            </Button>
+          </CardFooter>
+        </Form>
+      </Card>
     </>
   );
 };
