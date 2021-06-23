@@ -1,0 +1,1 @@
+export const URL_BACKEND="https://reportsct.herokuapp.com";
