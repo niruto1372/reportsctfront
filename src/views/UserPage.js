@@ -78,7 +78,7 @@ const UserPage = () => {
               trabajadas correspondientes al día de hoy. Debes ingresar las
               horas por servicio independientemente.
             </h5> */}
-
+  
             <Row>
               <Col  md="4"  sm="12">
                 <FormRegisterHours getData={getData} getAllData={getAllData} />

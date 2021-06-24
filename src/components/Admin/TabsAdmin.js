@@ -24,6 +24,7 @@ import {
   getEmployeesPerHourAreaServicesRolesById,
   getlistallemployeesById,
 } from "services/services";
+import { getAreas } from "services/services";
 
 const TabsAdmin = () => {
   const [iconPills, setIconPills] = React.useState("1");
@@ -58,6 +59,9 @@ const TabsAdmin = () => {
   useEffect(() => {
     getAllData();
   }, []);
+
+
+
 
   return (
     <>

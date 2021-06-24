@@ -14,6 +14,14 @@ export const getRoles = async () => {
   return response;
 };
 
+//get areas (es decir supervisor, lider, junior, etc)
+export const getAreas = async () => {
+  let response = await axios.get(`${URL_BACKEND}/api/areas`);
+  return response;
+};
+
+
+
 //post EmployeesRoles (instertar el rol de un empleado en un VA dado)
 export const postEmployeesRoles = async (objEmployeesRoles) => {
   let response = await axios({

@@ -31,7 +31,7 @@ const RouterMain = () => {
             path="/login-page"
             render={(props) => <LoginPage {...props} />}
           />
-          <Route path={"/admin-page"} component={AdminPage} />
+          
           <Route path={"/register-page"} component={RegisterPage} />
           {/* <Route
             path="/profile-page"
@@ -49,7 +49,7 @@ const RouterMain = () => {
           */}
           <PrivateRoute path={"/user-page"} component={UserPage} />
           <PrivateRoute path={"/profile-page"} component={ProfilePage} />
-          <PrivateRoute path={"/nucleo-icons"} component={NucleoIcons} />
+          <PrivateRoute path={"/admin-page"} component={AdminPage} />
 
           <Redirect to="/index" />
           <Redirect from="/" to="/index" />

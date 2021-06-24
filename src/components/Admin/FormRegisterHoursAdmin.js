@@ -25,7 +25,6 @@ const FormRegisterHoursAdmin = ({ getData,idEmployees }) => {
   const [finishFocus, setFinishFocus] = React.useState(false);
   var moment = require("moment");
 
-
   //get services
   const [services, setServices] = useState([]);
 

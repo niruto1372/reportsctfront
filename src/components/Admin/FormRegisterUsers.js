@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { postRegister } from "services/auth";
 
 import {
   Button
 } from "reactstrap";
 import Swal from "sweetalert2";
+import { getAreas } from "services/services";
 
 const FormRegisterUsers = () => {
+
+
+  //get areas
+  const [areas, setAreas] = useState([]);
+  useEffect(() => { 
+    getAreas().then((arrayAreas) => {
+      setAreas(arrayAreas.data);
+    });
+  }, []);
 
   const [formulario, setFormulario] = useState({
     name: "",
@@ -99,14 +109,25 @@ const FormRegisterUsers = () => {
                 onChange={handleChange}
               />
               <br />
-              <input
-                type="numer"
-                className="form-control"
-                placeholder="Area a la que pertenece"
-                name="idAreas"
-                value={formulario.idAreas}
-                onChange={handleChange}
-              />
+              
+              <select
+                    className="form-control"
+                    name="idAreas"
+                    id="idAreas"
+                    onChange={handleChange}
+                  >
+                    <option value="">-- Selecciona una opción --</option>
+                    {areas.map((objArea) => {
+                      return (
+                        <option
+                          key={objArea.IdAreas}
+                          value={objArea.IdAreas}
+                        >
+                          {objArea.NameAreas}
+                        </option>
+                      );
+                    })}
+                  </select>
               <br />
               <input
                 type="text"

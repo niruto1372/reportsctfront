@@ -21,13 +21,14 @@ import TransparentFooter from "components/Footers/TransparentFooter.js";
 import AuthContext from "context/auth/authContext";
 import { postLogin } from "services/auth";
 import NavbarLoginRegister from "components/Navbars/NavbarLoginRegister";
+import Swal from "sweetalert2";
 
 function LoginPage({ history }) {
-  const localAuthContext = useContext(AuthContext);
-  const { iniciarSesion } = localAuthContext;
+ 
 
   const [firstFocus, setFirstFocus] = React.useState(false);
   const [lastFocus, setLastFocus] = React.useState(false);
+
   React.useEffect(() => {
     document.body.classList.add("login-page");
     document.body.classList.add("sidebar-collapse");
@@ -40,10 +41,17 @@ function LoginPage({ history }) {
     };
   }, []);
 
+  
+  const localAuthContext = useContext(AuthContext);
+  const { iniciarSesion, userlevel } = localAuthContext;
+
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
+
+
+
 
   const handleChange = (e) => {
     setForm({
@@ -54,15 +62,31 @@ function LoginPage({ history }) {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // falta validar los campos del formulario
     postLogin(form.username, form.password).then((rpta) => {
+      
       if (rpta.ok) {
-        console.log(rpta);
         iniciarSesion(rpta.token);
-        history.replace("/user-page");
+        // revisar por que no esta jalando el nivel de usuario 
+        //para poder redireccionar a la pagina que corresponde
+        console.log(`userlevel: ${userlevel}`);
+        if(userlevel==="admin"){
+          history.replace("/admin-page");
+        }
+        else{
+          history.replace("/user-page");
+        }
+      } else if (rpta.ok === false) {
+        
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: `${rpta.message}`,
+          timer: 3500,
+        });
       }
     });
   };
+  
 
   return (
     <>
@@ -130,8 +154,6 @@ function LoginPage({ history }) {
                         onChange={handleChange}
                       ></Input>
                     </InputGroup>
-
-                    
                   </CardBody>
                   <CardFooter className="text-center">
                     <Button
