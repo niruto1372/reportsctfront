@@ -21,6 +21,16 @@ export const getAreas = async () => {
 };
 
 
+//get serivices by employee id (la lista de servicios en los que esta asignado un usuario)
+export const getServicesByEmployeeId = async (idEmployees) => {
+  const response = await fetch(
+    `${URL_BACKEND}/api/mixed/listservicesbyemployeeid/id/${idEmployees}`
+  );
+  const json = await response.json();
+  return json;
+};
+
+
 
 //post EmployeesRoles (instertar el rol de un empleado en un VA dado)
 export const postEmployeesRoles = async (objEmployeesRoles) => {

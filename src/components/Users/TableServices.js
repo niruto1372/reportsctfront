@@ -4,6 +4,7 @@ import { Button } from "reactstrap";
 import { MDBDataTableV5 } from "mdbreact";
 import Swal from "sweetalert2";
 import { deleteRegisterById } from "services/services";
+import moment from "moment";
 
 const TableServices = ({ data, getData }) => {
   // const [data, setData] = useState([]);
@@ -86,6 +87,7 @@ const TableServices = ({ data, getData }) => {
     rows: data.map((objData) => {
       return {
         ...objData,
+        Day: moment(objData.Day).add(5, 'hours').format('DD/MM/YYYY'),
         acciones: (
           <>
             <Button
@@ -108,14 +110,8 @@ const TableServices = ({ data, getData }) => {
       <>
         
           <div className="section section-contact-us text-center">
-            <h2 className="title">Servicios Registrados</h2>
-            <p>
-              <strong className="text-info">
-                {" "}
-                <br />
-                Sólamente puedes eliminar los registros ingresados el día de hoy.
-              </strong>
-            </p>
+            <h3 className="title">Servicios Registrados</h3>
+            
             <MDBDataTableV5
               hover
               entriesOptions={[5, 20, 25]}

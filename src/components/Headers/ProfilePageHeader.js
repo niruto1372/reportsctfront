@@ -1,8 +1,9 @@
 import AuthContext from "context/auth/authContext";
-import React,{useContext} from "react";
+import React,{useContext,useState,useEffect} from "react";
 
 // reactstrap components
 import { Container } from "reactstrap";
+import { getServicesByEmployeeId } from "services/services";
 
 // core components
 
@@ -11,7 +12,7 @@ function ProfilePageHeader() {
   let pageHeader = React.createRef();
 
   const localAuthContext=useContext(AuthContext);
-  const {name,lastname}=localAuthContext;
+  const {name,lastname,idEmployees}=localAuthContext;
 
   React.useEffect(() => {
     if (window.innerWidth > 991) {
@@ -26,6 +27,24 @@ function ProfilePageHeader() {
       };
     }
   });
+
+
+  const [servicesByEmployeeId, setServicesByEmployeeId] = useState([]);
+  const [countservicesByEmployeeId, setcountservicesByEmployeeId] = useState(0);
+
+  const getServicesByEmployeeIdFunction = () => {
+    getServicesByEmployeeId(idEmployees).then((rpta) => {
+      setServicesByEmployeeId(rpta);
+      setcountservicesByEmployeeId(rpta.length);
+      console.log(rpta.length);
+    });
+console.log(servicesByEmployeeId);
+  };
+
+  useEffect(() => {
+    getServicesByEmployeeIdFunction();
+  }, []);
+
   return (
     <>
       <div
@@ -47,8 +66,8 @@ function ProfilePageHeader() {
           <p className="category">Área de Proyectos </p>
           <div className="content">
             <div className="social-description">
-              <h2>--</h2>
-              <p>Total Servicios</p>
+              <h2>{countservicesByEmployeeId}</h2>
+              <p>Total Servicios Asignados</p>
             </div>
             <div className="social-description">
               <h2>--</h2>

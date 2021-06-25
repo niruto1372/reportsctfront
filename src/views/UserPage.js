@@ -21,6 +21,7 @@ import TableServices from "components/Users/TableServices";
 import TableAllServices from "components/Users/TableAllServices";
 import AuthContext from "context/auth/authContext";
 import { getEmployeesPerHourAreaServicesRolesById,getlistallemployeesById } from "services/services";
+import moment from "moment";
 
 const UserPage = () => {
   // const [pills, setPills] = React.useState("2");
@@ -72,12 +73,17 @@ const UserPage = () => {
         <ProfilePageHeader />
         <div className="section">
           <Container>
-            {/* <h3 className="title">Registrar Horas</h3>
-            <h5 className="description">
-              En el formulario mostrado a continuación podrás ingresar las horas
-              trabajadas correspondientes al día de hoy. Debes ingresar las
-              horas por servicio independientemente.
-            </h5> */}
+          <h2 className="title">Registrar horas</h2>
+          <p className="description">
+            En el formulario mostrado a continuación podrás ingresar las
+                horas trabajadas correspondientes al día{" "}
+                <strong className="text-info">{moment().format("YYYY-MM-DD ")}</strong> . Debes ingresar las horas
+                por servicio independientemente.<strong className="text-info">
+                {" "}
+                Recuerda que solo se puede ingresar y eliminar registros con la fecha de HOY.
+              </strong>
+          </p>
+         
   
             <Row>
               <Col  md="4"  sm="12">

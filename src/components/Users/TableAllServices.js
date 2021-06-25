@@ -2,6 +2,7 @@ import React from "react";
 
 import { Col } from "reactstrap";
 import { MDBDataTableV5 } from "mdbreact";
+import moment from "moment";
 
 const TableAllServices = ({ allData }) => {
   //const [data, setData] = useState([]);
@@ -49,6 +50,8 @@ const TableAllServices = ({ allData }) => {
     rows: allData.map((objData) => {
       return {
         ...objData,
+      Day: moment(objData.Day).add(5, 'hours').format('DD/MM/YYYY'),
+
       };
     }),
   };
