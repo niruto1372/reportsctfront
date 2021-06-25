@@ -3,7 +3,7 @@ import { Container } from "reactstrap";
 
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
-import UserNavbar from "components/Navbars/UserNavbar";
+import AdminNavbar from "components/Navbars/AdminNavbar";
 import TabsAdmin from "components/Admin/TabsAdmin";
 
 const UserPage = () => {
@@ -35,7 +35,7 @@ const UserPage = () => {
 
   return (
     <>
-      <UserNavbar />
+      <AdminNavbar />
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">

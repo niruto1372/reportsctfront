@@ -11,8 +11,8 @@ import ProfilePage from 'views/examples/ProfilePage';
 import AdminPage from 'views/AdminPage';
 import RegisterPage from 'views/RegisterPage';
 import Index from 'views/Index';
-import NucleoIcons from 'views/NucleoIcons';
 import UserPage from 'views/UserPage';
+import DarshboardPage from 'views/DashboardPage';
 import PrivateRoute from './PrivateRoute';
 
 const RouterMain = () => {
@@ -31,7 +31,11 @@ const RouterMain = () => {
             path="/login-page"
             render={(props) => <LoginPage {...props} />}
           />
-          
+          <Route
+            path="/dashboard-page"
+            render={(props) => <DarshboardPage {...props} />}
+          />
+
           <Route path={"/register-page"} component={RegisterPage} />
           {/* <Route
             path="/profile-page"

@@ -10,6 +10,10 @@ import {
   NavLink,
   Nav,
   Container,
+  DropdownMenu,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownItem
 } from "reactstrap";
 
 function AdminNavbar({ history }) {
@@ -82,11 +86,36 @@ function AdminNavbar({ history }) {
             navbar
           >
             <Nav navbar>
-              <NavItem>
-                <NavLink to="/index" tag={Link}>
-                  Acciones
-                </NavLink>
-              </NavItem>
+            <UncontrolledDropdown nav>
+                <DropdownToggle
+                  caret
+                  color="default"
+                  href="#pablo"
+                  nav
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <i className="now-ui-icons design_app mr-1"></i>
+                  <p>Acciones</p>
+                </DropdownToggle>
+                <DropdownMenu>
+                  <DropdownItem to="/dashboard-page" tag={Link}>
+                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                    Dashboard
+                  </DropdownItem>
+                  <DropdownItem
+                    href="http://nuxeo.controltotal.com.pe/nuxeo/login.jsp"
+                    target="_blank"
+                  >
+                    <i className="now-ui-icons design_bullet-list-67 mr-1"></i>
+                    Nuxeo - Documentation
+                  </DropdownItem>
+                  <DropdownItem to="/admin-page" tag={Link}>
+                    <i className="now-ui-icons business_chart-pie-36 mr-1"></i>
+                    Admin-page
+                  </DropdownItem>
+                </DropdownMenu>
+              </UncontrolledDropdown>
+              
               <NavItem>
                 <NavLink href="/index">¿Necesitas ayuda?</NavLink>
               </NavItem>

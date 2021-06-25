@@ -7,7 +7,6 @@ import { getWorkedHoursByEmployeeId } from "services/services";
 import { getServicesByEmployeeId } from "services/services";
 
 // core components
-import moment from "moment";
 import { getRemainingHoursToWorkByEmployeeId } from "services/services";
 
 function ProfilePageHeader() {

@@ -16,11 +16,15 @@ import {
 import ProfilePageHeader from "components/Headers/ProfilePageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 import UserNavbar from "components/Navbars/UserNavbar";
+import AdminNavbar from "components/Navbars/AdminNavbar";
 import FormRegisterHours from "./index-sections/FormRegisterHours";
 import TableServices from "components/Users/TableServices";
 import TableAllServices from "components/Users/TableAllServices";
 import AuthContext from "context/auth/authContext";
-import { getEmployeesPerHourAreaServicesRolesById,getlistallemployeesById } from "services/services";
+import {
+  getEmployeesPerHourAreaServicesRolesById,
+  getlistallemployeesById,
+} from "services/services";
 import moment from "moment";
 
 const UserPage = () => {
@@ -38,8 +42,7 @@ const UserPage = () => {
   }, []);
 
   const localAuthContext = useContext(AuthContext);
-  const { idEmployees } = localAuthContext;
-
+  const { idEmployees, userlevel } = localAuthContext;
 
   //////////////////////////////////////////////
   const [data, setData] = useState([]);
@@ -53,7 +56,7 @@ const UserPage = () => {
 
   const getAllData = () => {
     getlistallemployeesById(idEmployees).then((rpta) => {
-      setAllData(rpta);
+      setAllData(rpta);      
     });
   };
 
@@ -65,31 +68,36 @@ const UserPage = () => {
     getAllData();
   }, []);
 
+ 
 
   return (
     <>
-      <UserNavbar />
+      {userlevel !== "user" ? <AdminNavbar /> : <UserNavbar />}
+      
       <div className="wrapper">
         <ProfilePageHeader />
         <div className="section">
           <Container>
-          <h2 className="title">Registrar horas</h2>
-          <p className="description">
-            En el formulario mostrado a continuación podrás ingresar las
-                horas trabajadas correspondientes al día{" "}
-                <strong className="text-info">{moment().format("YYYY-MM-DD ")}</strong> . Debes ingresar las horas
-                por servicio independientemente.<strong className="text-info">
+            <h2 className="title">Registrar horas</h2>
+            <p className="description">
+              En el formulario mostrado a continuación podrás ingresar las horas
+              trabajadas correspondientes al día{" "}
+              <strong className="text-info">
+                {moment().format("YYYY-MM-DD ")}
+              </strong>{" "}
+              . Debes ingresar las horas por servicio independientemente.
+              <strong className="text-info">
                 {" "}
-                Recuerda que solo se puede ingresar y eliminar registros con la fecha de HOY.
+                Recuerda que solo se puede ingresar y eliminar registros con la
+                fecha de HOY.
               </strong>
-          </p>
-         
-  
+            </p>
+
             <Row>
-              <Col  md="4"  sm="12">
+              <Col md="4" sm="12">
                 <FormRegisterHours getData={getData} getAllData={getAllData} />
               </Col>
-              <Col  md="8">
+              <Col md="8">
                 <TableServices data={data} getData={getData} />
               </Col>
             </Row>
