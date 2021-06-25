@@ -31,6 +31,27 @@ export const getServicesByEmployeeId = async (idEmployees) => {
 };
 
 
+//get worked hours by employee id (la cantidad de horas trabajadas por usuario en un mes)
+export const getWorkedHoursByEmployeeId = async (idEmployees) => {
+  const response = await fetch(
+    `${URL_BACKEND}/api/workedHoursByEmployee/getworkedhours/id/${idEmployees}`
+  );
+  const json = await response.json();
+  return json;
+};
+
+
+//get remaining  hours to work by employee id (la cantidad de horas por trabajar por usuario en un mes)
+export const getRemainingHoursToWorkByEmployeeId = async (idEmployees) => {
+  const response = await fetch(
+    `${URL_BACKEND}/api/workedHoursByEmployee/getremaininghourstowork/id/${idEmployees}`
+  );
+  const json = await response.json();
+  return json;
+};
+
+
+
 
 //post EmployeesRoles (instertar el rol de un empleado en un VA dado)
 export const postEmployeesRoles = async (objEmployeesRoles) => {

@@ -1,18 +1,20 @@
 import AuthContext from "context/auth/authContext";
-import React,{useContext,useState,useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 // reactstrap components
 import { Container } from "reactstrap";
+import { getWorkedHoursByEmployeeId } from "services/services";
 import { getServicesByEmployeeId } from "services/services";
 
 // core components
+import moment from "moment";
+import { getRemainingHoursToWorkByEmployeeId } from "services/services";
 
 function ProfilePageHeader() {
-
   let pageHeader = React.createRef();
 
-  const localAuthContext=useContext(AuthContext);
-  const {name,lastname,idEmployees}=localAuthContext;
+  const localAuthContext = useContext(AuthContext);
+  const { name, lastname, idEmployees } = localAuthContext;
 
   React.useEffect(() => {
     if (window.innerWidth > 991) {
@@ -28,21 +30,41 @@ function ProfilePageHeader() {
     }
   });
 
-
-  const [servicesByEmployeeId, setServicesByEmployeeId] = useState([]);
   const [countservicesByEmployeeId, setcountservicesByEmployeeId] = useState(0);
 
   const getServicesByEmployeeIdFunction = () => {
     getServicesByEmployeeId(idEmployees).then((rpta) => {
-      setServicesByEmployeeId(rpta);
       setcountservicesByEmployeeId(rpta.length);
-      console.log(rpta.length);
     });
-console.log(servicesByEmployeeId);
   };
 
   useEffect(() => {
     getServicesByEmployeeIdFunction();
+  }, []);
+
+  const [countHoursByEmployeeId, setCountHoursByEmployeeId] = useState(0);
+
+  const getCountHoursByEmployeeIdFunction = () => {
+    getWorkedHoursByEmployeeId(idEmployees).then((rpta) => {
+      setCountHoursByEmployeeId(rpta[0].WorkedHours);
+    });
+  };
+
+  useEffect(() => {
+    getCountHoursByEmployeeIdFunction();
+  }, []);
+
+
+
+  const [countRemainingHoursToWork, setCountRemainingHoursToWork] = useState(0);
+
+  const getRemainingHoursToWorkFunction = () => {
+    getRemainingHoursToWorkByEmployeeId(idEmployees).then((rpta) => {
+      setCountRemainingHoursToWork(rpta[0].RemainingHoursToWork);
+    });
+  };
+  useEffect(() => {
+    getRemainingHoursToWorkFunction();
   }, []);
 
   return (
@@ -62,20 +84,24 @@ console.log(servicesByEmployeeId);
           <div className="photo-container">
             <img alt="..." src={require("assets/img/logo1.png")}></img>
           </div>
-          <h3 className="title">{name} {lastname}</h3>
+          <h3 className="title">
+            {name} {lastname}
+          </h3>
           <p className="category">Área de Proyectos </p>
           <div className="content">
             <div className="social-description">
               <h2>{countservicesByEmployeeId}</h2>
               <p>Total Servicios Asignados</p>
             </div>
+            
             <div className="social-description">
-              <h2>--</h2>
-              <p>Horas laboradas del mes</p>
+              <h2>{countHoursByEmployeeId}</h2>
+              <p>Horas laboradas durante el mes</p>
             </div>
+            
             <div className="social-description">
-              <h2>--</h2>
-              <p>Horas restantes del mes</p>
+              <h2>{countRemainingHoursToWork}</h2>
+              <p>Horas por laborar en el mes</p>
             </div>
           </div>
         </Container>
