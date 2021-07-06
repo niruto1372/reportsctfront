@@ -41,6 +41,8 @@ function ProfilePageHeader() {
     getServicesByEmployeeIdFunction();
   }, []);
 
+
+  
   const [countHoursByEmployeeId, setCountHoursByEmployeeId] = useState(0);
 
   const getCountHoursByEmployeeIdFunction = () => {

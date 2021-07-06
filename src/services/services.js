@@ -144,3 +144,90 @@ export const postRegisterRoles = async (objRoles) => {
   });
   return response;
 };
+
+
+//get months
+export const getMonths = async () => {
+  let response = await axios.get(`${URL_BACKEND}/api/mixed/listmonths`);
+  return response;
+};
+
+
+
+//get years
+export const getYears = async () => {
+  let response = await axios.get(`${URL_BACKEND}/api/mixed/listyears`);
+  return response;
+};
+
+
+
+//get list of users
+// export const getUsers = async (id, date) => {
+//   let response = await axios.get(`${URL_BACKEND}/api/mixed/listusers/id/${id}`, {
+//     body: {
+//       yearmonth: date
+//     }
+//   }
+//   );
+//   return response.data;
+// };
+
+
+// export const getUsers = async (id, date) => {
+//   let response = await axios({
+//     method: "GET",
+//     data:
+//       JSON.stringify({ yearmonth: date })
+//     ,
+//     url: `${URL_BACKEND}/api/mixed/listusers/id/${id}`,
+//     headers: {
+//       "Content-type": "application/json",
+//     },
+//   });
+//   return response.data;
+// };
+
+
+export const postUsers = async (objDate) => {
+  let response = await axios({
+    method: "POST",
+    data:  objDate,
+    url: `${URL_BACKEND}/api/mixed/listusers`,
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  return response.data;
+};
+
+
+
+
+//get worked hours by employee id and date
+export const postWorkedHoursByEmployeeIdAndDate = async (objIdDate) => {
+  let response = await axios({
+    method: "POST",
+    data:  objIdDate,
+    url: `${URL_BACKEND}/api/mixed/listservicesbyemployeeidanddate`,
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  return response;
+};
+
+
+
+export const postRemainingHoursByEmployeeIdAndDate = async (objIdDate) => {
+  let response = await axios({
+    method: "POST",
+    data:  objIdDate,
+    url: `${URL_BACKEND}/api/mixed/getremaininghoursbyidanddate`,
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  return response;
+};
+

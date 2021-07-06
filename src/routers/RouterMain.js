@@ -14,6 +14,7 @@ import Index from 'views/Index';
 import UserPage from 'views/UserPage';
 import DarshboardPage from 'views/DashboardPage';
 import PrivateRoute from './PrivateRoute';
+import DetailPage from 'views/DetailPage';
 
 const RouterMain = () => {
   
@@ -31,20 +32,17 @@ const RouterMain = () => {
             path="/login-page"
             render={(props) => <LoginPage {...props} />}
           />
-          <Route
-            path="/dashboard-page"
-            render={(props) => <DarshboardPage {...props} />}
-          />
-
-          <Route path={"/register-page"} component={RegisterPage} />
+          
+          {/* <Route
+            path="/register-page"
+            render={(props) => <RegisterPage {...props} />}
+          /> */}
+          {/* <Route path={"/register-page"} component={RegisterPage} /> */}
           {/* <Route
             path="/profile-page"
             render={(props) => <ProfilePage {...props} />}
           /> 
-          <Route
-            path="/register-page"
-            render={(props) => <RegisterPage {...props} />}
-          />
+          
           <Route
             path="/nucleo-icons"
             render={(props) => <NucleoIcons {...props} />}
@@ -54,7 +52,9 @@ const RouterMain = () => {
           <PrivateRoute path={"/user-page"} component={UserPage} />
           <PrivateRoute path={"/profile-page"} component={ProfilePage} />
           <PrivateRoute path={"/admin-page"} component={AdminPage} />
-
+          <PrivateRoute path={"/dashboard-page"} component={DarshboardPage} />
+          <PrivateRoute path={"/detail-page"} component={DetailPage} />
+         
           <Redirect to="/index" />
           <Redirect from="/" to="/index" />
         </Switch>
