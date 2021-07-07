@@ -18,34 +18,34 @@ import {
 
 function AdminNavbar({ history }) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-info");
-  // const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const [collapseOpen, setCollapseOpen] = React.useState(false);
 
   //mis cosas
   const localAuthContext = useContext(AuthContext);
   const {  cerrarSesion } = localAuthContext;
 
   React.useEffect(() => {
-  //   const updateNavbarColor = () => {
-  //     if (
-  //       document.documentElement.scrollTop > 399 ||
-  //       document.body.scrollTop > 399
-  //     ) {
-  //       setNavbarColor("");
-  //     } else if (
-  //       document.documentElement.scrollTop < 400 ||
-  //       document.body.scrollTop < 400
-  //     ) {
-  //       setNavbarColor("navbar-info");
-  //     }
-  //   };
-  //   window.addEventListener("scroll", updateNavbarColor);
-  //   return function cleanup() {
-  //     window.removeEventListener("scroll", updateNavbarColor);
-  //   };
+    const updateNavbarColor = () => {
+      if (
+        document.documentElement.scrollTop > 399 ||
+        document.body.scrollTop > 399
+      ) {
+        setNavbarColor("");
+      } else if (
+        document.documentElement.scrollTop < 400 ||
+        document.body.scrollTop < 400
+      ) {
+        setNavbarColor("navbar-danger");
+      }
+    };
+    window.addEventListener("scroll", updateNavbarColor);
+    return function cleanup() {
+      window.removeEventListener("scroll", updateNavbarColor);
+    };
   });
   return (
     <>
-      {/* {collapseOpen ? (
+      {collapseOpen ? (
         <div
           id="bodyClick"
           onClick={() => {
@@ -53,7 +53,7 @@ function AdminNavbar({ history }) {
             setCollapseOpen(false);
           }}
         />
-      ) : null} */}
+      ) : null}
       <Navbar color="info" expand="lg">
         <Container>
           
@@ -70,9 +70,9 @@ function AdminNavbar({ history }) {
               className="navbar-toggler navbar-toggler"
               onClick={() => {
                 document.documentElement.classList.toggle("nav-open");
-                // setCollapseOpen(!collapseOpen);
+                setCollapseOpen(!collapseOpen);
               }}
-              // aria-expanded={collapseOpen}
+              aria-expanded={collapseOpen}
               type="button"
             >
               <span className="navbar-toggler-bar top-bar"></span>
@@ -82,7 +82,7 @@ function AdminNavbar({ history }) {
           </div>
           <Collapse
             className="justify-content-end"
-            // isOpen={collapseOpen}
+            isOpen={collapseOpen}
             navbar
           >
             <Nav navbar>

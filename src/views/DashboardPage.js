@@ -11,7 +11,7 @@ import {
 
 
 // core components
-import AdminNavbar from "components/Navbars/AdminNavbar.js";
+import AdminNavbar2 from "components/Navbars/AdminNavbar2.js";
 import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DefaultFooter from "components/Footers/DefaultFooter.js";
 
@@ -115,9 +115,9 @@ const DashboardPage = () => {
 
   return (
     <>
-      <AdminNavbar />
+      <AdminNavbar2 />
       <div className="wrapper">
-        <LandingPageHeader />
+        {/* <LandingPageHeader /> */}
         <div className="section section-team text-center">
           <Container>
             <Row>
