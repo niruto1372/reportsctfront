@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 
 import FormRegisterHoursAdmin from "./FormRegisterHoursAdmin";
+import FormRegisterHoursUser from "./FormRegisterHoursUser";
 import FormRegisterUsers from "./FormRegisterUsers";
 import FormRegisterServices from "./FormRegisterServices";
 import FormRegisterRoles from "./FormRegisterRoles";
@@ -23,8 +24,8 @@ import AuthContext from "context/auth/authContext";
 import {
   getEmployeesPerHourAreaServicesRolesById,
   getlistallemployeesById,
+  getAreas
 } from "services/services";
-import { getAreas } from "services/services";
 
 const TabsAdmin = () => {
   const [iconPills, setIconPills] = React.useState("1");
@@ -87,6 +88,19 @@ const TabsAdmin = () => {
                   </NavItem>
                   <NavItem>
                     <NavLink
+                      className={iconPills === "5" ? "active" : ""}
+                      href="#pablo"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIconPills("5");
+                      }}
+                    >
+                      <i className="now-ui-icons objects_umbrella-13"></i>
+                      Registrar Horas de un usuario
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
                       className={iconPills === "2" ? "active" : ""}
                       href="#pablo"
                       onClick={(e) => {
@@ -134,7 +148,7 @@ const TabsAdmin = () => {
                   <TabPane tabId="iconPills1">
                     <Col className="ml-auto mr-auto" md="12" xl="12">
                       <FormRegisterHoursAdmin
-                      idEmployees={idEmployees}
+                        idEmployees={idEmployees}
                         getData={getData}
                         getAllData={getAllData}
                       />
@@ -145,6 +159,18 @@ const TabsAdmin = () => {
                         allData={allData}
                         getAllData={getAllData}
                       />
+                    </Col>
+                  </TabPane>
+                  <TabPane tabId="iconPills5">
+                    <Col className="ml-auto mr-auto" md="12" xl="12">
+                      <FormRegisterHoursUser
+                        idEmployees={idEmployees}
+                        getData={getData}
+                        getAllData={getAllData}
+                      />
+                    </Col>
+                    <Col className="ml-auto mr-auto" md="12" xl="12">
+                      <TableServices data={data} getData={getData} />                      
                     </Col>
                   </TabPane>
                   <TabPane tabId="iconPills2">

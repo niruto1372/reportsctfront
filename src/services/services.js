@@ -162,33 +162,14 @@ export const getYears = async () => {
 
 
 
-//get list of users
-// export const getUsers = async (id, date) => {
-//   let response = await axios.get(`${URL_BACKEND}/api/mixed/listusers/id/${id}`, {
-//     body: {
-//       yearmonth: date
-//     }
-//   }
-//   );
-//   return response.data;
-// };
+// get list of employees (name, lastname, email, username)
+export const getListOfEmployees = async () => {
+  let response = await axios.get(`${URL_BACKEND}/api/employees`);
+  return response;
+};
 
 
-// export const getUsers = async (id, date) => {
-//   let response = await axios({
-//     method: "GET",
-//     data:
-//       JSON.stringify({ yearmonth: date })
-//     ,
-//     url: `${URL_BACKEND}/api/mixed/listusers/id/${id}`,
-//     headers: {
-//       "Content-type": "application/json",
-//     },
-//   });
-//   return response.data;
-// };
-
-
+//get list of users and other things
 export const postUsers = async (objDate) => {
   let response = await axios({
     method: "POST",
